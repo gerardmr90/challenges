@@ -12,11 +12,14 @@
 		<div class="container">
       <div class="header clearfix">
         <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="/">Inicio</a></li>
-            <li role="presentation"><a href="/users/login">Entrar</a></li>
-            <li role="presentation"><a href="/users/register">Registrar</a></li>
-						<li role="presentation"><a href="/users/logout">Salir</a></li>
+					<ul class="nav nav-pills pull-right">
+            {{#if user}}
+              <li role="presentation"><a href="/">Inicio</a></li>
+              <li role="presentation"><a href="/users/logout">Salir</a></li>
+            {{else}}
+              <li role="presentation"><a href="/users/login">Entrar</a></li>
+              <li role="presentation"><a href="/users/register">Registrarse</a></li>
+            {{/if}}
           </ul>
         </nav>
         <h3 class="text-muted">Challenge</h3>
@@ -35,7 +38,7 @@
           {{#if error}}
             <div class="alert alert-danger">{{error}}</div>
           {{/if}}
-					
+
           {{{body}}}
         </div>
       </div>
