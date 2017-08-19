@@ -21,6 +21,8 @@ var db = mongoose.connection;
 // set routes
 var index = require('./routes/index');
 var users = require('./routes/users');
+var challenges = require('./routes/challenges');
+var diplomas = require('./routes/diplomas');
 
 // initialize app
 var app = express();
@@ -85,6 +87,8 @@ app.use(function(req, res, next) {
 // set routes
 app.use('/', index);
 app.use('/users', users);
+app.use('/challenges', challenges);
+app.use('/diplomas', diplomas);
 
 // set port and start server
 var port = process.env.PORT || 3000;
