@@ -1,5 +1,5 @@
 #  Challenges
-Games website for the Nursing Department of the University of Lleida
+Games website for the Nursing Department of the University of Lleida.
 
 ## Getting started
 These instructions will get you a copy of the project up and running on your local machine.
