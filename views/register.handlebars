@@ -2,29 +2,30 @@
 <html>
 
 <body>
-	<h2 class="page-header">Crear cuenta</h2>
+	<div class="form-wrap">
+		<h3>Crear cuenta</h3>
+		{{#if errors}}
+			{{#each errors}}
+				<div class="alert alert-danger">{{msg}}</div>
+			{{/each}}
+		{{/if}}
 
-	{{#if errors}}
-		{{#each errors}}
-			<div class="alert alert-danger">{{msg}}</div>
-		{{/each}}
-	{{/if}}
-
-	<form method="post" action="/users/register">
-		<div class="form-group">
-			<label>Nombre de usuario</label>
-			<input type="text" class="form-control" placeholder="Nombre de usuario" name="username">
-		</div>
-		<div class="form-group">
-			<label>Contraseña</label>
-			<input type="password" class="form-control" placeholder="Contraseña" name="password">
-		</div>
-		<div class="form-group">
-			<label>Confirmar contraseña</label>
-			<input type="password" class="form-control" placeholder="Contraseña" name="confirm_password">
-		</div>
-		<button type="submit" class="btn btn-default">Enviar</button>
-	</form>
+		<form method="post" action="/users/register">
+			<div class="form-group">
+				<label>Nombre de usuario</label>
+				<input type="text" class="form-control" placeholder="Nombre de usuario" name="username">
+			</div>
+			<div class="form-group">
+				<label>Contraseña</label>
+				<input type="password" class="form-control" placeholder="Contraseña" name="password">
+			</div>
+			<div class="form-group">
+				<label>Confirmar contraseña</label>
+				<input type="password" class="form-control" placeholder="Contraseña" name="confirm_password">
+			</div>
+			<button type="submit" class="btn btn-default btn-block">Enviar</button>
+		</form>
+	</div>
 </body>
 
 </html>

@@ -19,7 +19,7 @@ mongoose.connect('mongodb://localhost/challenge',{
 var db = mongoose.connection;
 
 // set routes
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var users = require('./routes/users');
 
 // initialize app
@@ -83,7 +83,7 @@ app.use(function(req, res, next) {
 });
 
 // set routes
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
 
 // set port and start server

@@ -24,8 +24,8 @@ router.post('/register', function(req, res){
 	req.checkBody('password', 'Introduce una contraseña').notEmpty();
 	req.checkBody('password', 'La contraeña debe tener como minimo 6 caracteres').len(6, 20);
 	req.checkBody('confirm_password', 'Vuelve a introducir la contraseña').notEmpty();
-	req.checkBody('confirm_password', 'La contraeña debe tener como minimo 6 caracteres').len(6, 20);
-	req.checkBody('password', 'La contraseña introducida no coincide').equals(req.body.confirm_password);
+	req.checkBody('confirm_password', 'La contraseña debe tener como mínimo 6 caracteres').len(6, 20);
+	req.checkBody('password', 'Las contraseñas introducidas no coinciden').equals(req.body.confirm_password);
 
 	req.getValidationResult().then(function(result) {
 		if (result.isEmpty()) {
@@ -88,8 +88,8 @@ router.post('/login', passport.authenticate('local',
 
 router.get('/logout', function(req, res){
 	req.logout();
-	req.flash('success_msg', 'Has cerrado la sesion');
-	res.redirect('/users/logout');
+	req.flash('success_msg', 'Has cerrado la sesión');
+	res.redirect('/users/login');
 });
 
 module.exports = router;
