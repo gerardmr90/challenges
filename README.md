@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/gerardmr90/challenges.svg?token=xMv4vkZDxz3EZTFXyq5q&branch=master)](https://travis-ci.com/gerardmr90/challenges)
+
 #  Challenges
 Games website for the Nursing Department of the University of Lleida.
 
@@ -20,4 +22,9 @@ npm install
 ### Development Server
 ```
 npm start
+```
+
+### Test
+```
+npm test
 ```

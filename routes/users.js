@@ -1,25 +1,26 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user')
-var passport = require('passport')
+var User = require('../models/user');
+var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-// GET register page
+// GET register page.
 router.get('/register', function(req, res) {
-	res.render('register');
+	res.render('register_user');
 });
 
-// GET login page
+// GET login page.
 router.get('/login', function(req, res) {
 	res.render('login');
 });
 
+// POST on users page.
 router.post('/register', function(req, res) {
 		var username = req.body.username;
 		var password = req.body.password;
 		var confirm_password = req.body.confirm_password;
 
-	// Validation
+	// Validation.
 	req.checkBody('username', 'Introduce un nombre de usuario').notEmpty();
 	req.checkBody('password', 'Introduce una contraseña').notEmpty();
 	req.checkBody('password', 'La contraeña debe tener como minimo 6 caracteres').len(6, 20);
@@ -44,7 +45,7 @@ router.post('/register', function(req, res) {
 			res.redirect('/users/login');
 		} else {
 			var errors = result.array();
-			res.render('register', {
+			res.render('register_user', {
 				errors: errors
 			});
 		}
