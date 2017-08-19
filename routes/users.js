@@ -5,16 +5,16 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 
 // GET register page
-router.get('/register', function(req, res){
+router.get('/register', function(req, res) {
 	res.render('register');
 });
 
 // GET login page
-router.get('/login', function(req, res){
+router.get('/login', function(req, res) {
 	res.render('login');
 });
 
-router.post('/register', function(req, res){
+router.post('/register', function(req, res) {
 		var username = req.body.username;
 		var password = req.body.password;
 		var confirm_password = req.body.confirm_password;
@@ -34,7 +34,7 @@ router.post('/register', function(req, res){
 				password: password
 			});
 
-			User.createUser(new_user, function(err, user){
+			User.createUser(new_user, function(err, user) {
 				if (err) return err;
 				console.log(user);
 			});
@@ -53,7 +53,7 @@ router.post('/register', function(req, res){
 
 passport.use(new LocalStrategy (
 	function(username, password, done) {
-		User.getUserByUsername(username, function(err, user){
+		User.getUserByUsername(username, function(err, user) {
 			if (err) throw err;
 			if (!user){
 				return done(null, false, {message: 'Usuario desconocido'});
