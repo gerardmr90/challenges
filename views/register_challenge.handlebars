@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	<div class="form-wrap">
+		<h3>Crear nuevo reto</h3>
+		{{#if errors}}
+			{{#each errors}}
+				<div class="alert alert-danger">{{msg}}</div>
+			{{/each}}
+		{{/if}}
+
+		<form method="post" action="/challenges/register">
+			<div class="form-group">
+				<label>Nombre</label>
+				<input type="text" class="form-control" placeholder="Nombre" name="challengeName" required>
+			</div>
+			<div class="form-group">
+				<label>Diploma</label>
+				<select id="diploma" type="select" placeholder="Diploma" name="diplomaName" class="form-control" required>
+					<option value="volvo">Volvo</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Descripción</label>
+				<input type="text" class="form-control" placeholder="Descripcion" name="description">
+			</div>
+			<button type="submit" class="btn btn-default btn-block">Crear reto</button>
+		</form>
+	</div>
+</body>
+
+</html>

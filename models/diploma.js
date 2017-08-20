@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 // Diploma Schema
 var DiplomaSchema = mongoose.Schema({
-	name: {
+	diplomaName: {
 		type: String,
 		index:true
 	},
@@ -17,8 +17,8 @@ module.exports.createDiploma = function(diploma, callback) {
 	diploma.save(callback);
 }
 
-module.exports.getDiplomaByName = function(name, callback) {
-	var query = {name: name};
+module.exports.getDiplomaByName = function(diplomaName, callback) {
+	var query = {diplomaName: diplomaName};
 	Diploma.findOne(query, callback);
 }
 

@@ -21,28 +21,34 @@ router.post('/register', function(req, res) {
 		var confirm_password = req.body.confirm_password;
 
 	// Validation.
-	req.checkBody('username', 'Introduce un nombre de usuario').notEmpty();
-	req.checkBody('password', 'Introduce una contraseña').notEmpty();
 	req.checkBody('password', 'La contraeña debe tener como minimo 6 caracteres').len(6, 20);
-	req.checkBody('confirm_password', 'Vuelve a introducir la contraseña').notEmpty();
 	req.checkBody('confirm_password', 'La contraseña debe tener como mínimo 6 caracteres').len(6, 20);
 	req.checkBody('password', 'Las contraseñas introducidas no coinciden').equals(req.body.confirm_password);
 
 	req.getValidationResult().then(function(result) {
 		if (result.isEmpty()) {
-			var new_user = new User({
-				username: username,
-				password: password
+			User.getUserByUsername(username, function(err, user){
+				if (err) throw err;
+				else if (user) {
+					var errors = [{param: "username", msg: "El usuario ya existe", value: username}];
+					res.render('register_user', {
+						errors: errors
+					});
+				} else {
+					var new_user = new User({
+						username: username,
+						password: password
+					});
+
+					User.createUser(new_user, function(err, user) {
+						if (err) return err;
+					});
+
+					req.flash('success_msg', 'Registro completado');
+
+					res.redirect('/users/login');
+				}
 			});
-
-			User.createUser(new_user, function(err, user) {
-				if (err) return err;
-				console.log(user);
-			});
-
-			req.flash('success_msg', 'Registro completado');
-
-			res.redirect('/users/login');
 		} else {
 			var errors = result.array();
 			res.render('register_user', {

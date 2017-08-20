@@ -15,34 +15,29 @@ router.get('/register', auth.ensureAthentication,function(req, res) {
 
 // POST on diplomas page.
 router.post('/register', function(req, res) {
-		var name = req.body.name;
-		var description = req.body.description;
+	var diplomaName = req.body.diplomaName;
+	var description = req.body.description;
 
-	// Validation.
-	req.checkBody('diploma_name', 'Introduce un nombre para el diploma').notEmpty();
-	req.checkBody('description', 'Introduce una descripción para el diploma').notEmpty();
-
-
-	req.getValidationResult().then(function(result) {
-		if (result.isEmpty()) {
+	Diploma.getDiplomaByName(diplomaName, function(err, diploma) {
+		if (err) throw err;
+		else if (diploma) {
+			var errors = [{param: "diplomaName", msg: "El diploma ya existe", value: diplomaName}];
+			res.render('register_diploma', {
+				errors: errors
+			});
+		} else {
 			var new_diploma = new Diploma({
-				name: name,
+				diplomaName: diplomaName,
 				description: description
 			});
 
 			Diploma.createDiploma(new_diploma, function(err, diploma) {
 				if (err) return err;
-				console.log(diploma);
 			});
 
 			req.flash('success_msg', 'Diploma creado correctamente');
 
 			res.redirect('/diplomas');
-		} else {
-			var errors = result.array();
-			res.render('register_diploma', {
-				errors: errors
-			});
 		}
 	});
 });

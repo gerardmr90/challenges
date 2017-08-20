@@ -90,6 +90,11 @@ app.use('/users', users);
 app.use('/challenges', challenges);
 app.use('/diplomas', diplomas);
 
+app.use(function(req, res, next) {
+    res.status(400);
+    res.render('error');
+});
+
 // set port and start server
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
