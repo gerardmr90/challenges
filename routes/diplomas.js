@@ -5,16 +5,16 @@ var auth = require('../middlewares/auth');
 
 // GET home page.
 router.get('/', auth.ensureAthentication, function(req, res) {
-	res.render('diplomas');
+	res.render('diplomas/diplomas');
 });
 
 // GET register page.
-router.get('/register', auth.ensureAthentication,function(req, res) {
-	res.render('register_diploma');
+router.get('/register', auth.ensureAthentication, function(req, res) {
+	res.render('diplomas/register');
 });
 
 // POST on diplomas page.
-router.post('/register', function(req, res) {
+router.post('/register', auth.ensureAthentication, function(req, res) {
 	var diplomaName = req.body.diplomaName;
 	var description = req.body.description;
 
@@ -22,7 +22,7 @@ router.post('/register', function(req, res) {
 		if (err) throw err;
 		else if (diploma) {
 			var errors = [{param: "diplomaName", msg: "El diploma ya existe", value: diplomaName}];
-			res.render('register_diploma', {
+			res.render('diplomas/register', {
 				errors: errors
 			});
 		} else {

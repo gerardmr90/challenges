@@ -18,7 +18,9 @@
 			<div class="form-group">
 				<label>Diploma</label>
 				<select id="diploma" type="select" placeholder="Diploma" name="diplomaName" class="form-control" required>
-					<option value="volvo">Volvo</option>
+					{{#each diplomas}}
+        		<option value="{{diplomaName}}">{{diplomaName}}</option>
+					{{/each}}
 				</select>
 			</div>
 			<div class="form-group">

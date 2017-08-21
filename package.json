@@ -7,13 +7,17 @@
     "start": "node app.js",
     "test": "nodemon app.js"
   },
-  "author": "Gerard Montilla Romia",
+  "author": "Gerard Montilla Romia <gerard_m90@outlook.com>",
   "license": "GPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gerardmr90/challenges"
+  },
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
     "connect-flash": "*",
-    "cookie-parser": "^1.4.3",
+    "cookie-parser": "*",
     "express": "*",
     "express-handlebars": "*",
     "express-messages": "*",
@@ -23,10 +27,11 @@
     "fs": "*",
     "mongodb": "*",
     "mongoose": "*",
-    "morgan": "^1.8.2",
+    "morgan": "*",
     "passport": "*",
     "passport-http": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "serve-favicon": "*"
   },
   "devDependencies": {
     "nodemon": "*"

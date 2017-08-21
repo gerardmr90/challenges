@@ -25,3 +25,7 @@ module.exports.getDiplomaByName = function(diplomaName, callback) {
 module.exports.getDiplomaById = function(id, callback) {
 	Diploma.findById(id, callback);
 }
+
+module.exports.getDiplomas = function(callback) {
+	Diploma.find(callback);
+}

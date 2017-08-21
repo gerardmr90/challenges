@@ -3,15 +3,16 @@ var router = express.Router();
 var User = require('../models/user');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var auth = require('../middlewares/auth');
 
 // GET register page.
 router.get('/register', function(req, res) {
-	res.render('register_user');
+	res.render('users/register');
 });
 
 // GET login page.
 router.get('/login', function(req, res) {
-	res.render('login');
+	res.render('users/login');
 });
 
 // POST on users page.
@@ -27,11 +28,11 @@ router.post('/register', function(req, res) {
 
 	req.getValidationResult().then(function(result) {
 		if (result.isEmpty()) {
-			User.getUserByUsername(username, function(err, user){
+			User.getUserByUsername(username, function(err, user) {
 				if (err) throw err;
 				else if (user) {
 					var errors = [{param: "username", msg: "El usuario ya existe", value: username}];
-					res.render('register_user', {
+					res.render('users/register', {
 						errors: errors
 					});
 				} else {
@@ -51,7 +52,7 @@ router.post('/register', function(req, res) {
 			});
 		} else {
 			var errors = result.array();
-			res.render('register_user', {
+			res.render('users/register', {
 				errors: errors
 			});
 		}
@@ -93,10 +94,14 @@ router.post('/login', passport.authenticate('local',
 			res.redirect('/');
 });
 
-router.get('/logout', function(req, res){
+router.get('/logout', auth.ensureAthentication, function(req, res) {
 	req.logout();
 	req.flash('success_msg', 'Has cerrado la sesión');
 	res.redirect('/users/login');
+});
+
+router.get('/:username', auth.ensureAthentication, function(req, res) {
+	res.render('users/profile');
 });
 
 module.exports = router;

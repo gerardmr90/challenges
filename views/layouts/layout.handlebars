@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Challenge</title>
+    <title>Retos</title>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/styles.css">
+		<link rel="shortcut icon" href="/" type="image/x-icon">
+		<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
   </head>
   <body>
 		<!-- Fixed navbar -->
@@ -24,7 +26,7 @@
 				<div id="navbar" class="collapse navbar-collapse pull-right">
 					<ul class="nav navbar-nav">
 						{{#if user}}
-							<li role="presentation"><a href="/">{{user.username}}</a></li>
+							<li role="presentation"><a href="/users/{{user.username}}">{{user.username}}</a></li>
 							<li role="presentation"><a href="/challenges">Retos</a></li>
 							<li role="presentation"><a href="/diplomas">Diplomas</a></li>
 							<li role="presentation"><a href="/users/logout">Salir</a></li>

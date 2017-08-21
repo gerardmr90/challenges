@@ -1,4 +1,5 @@
 var express = require('express');
+var favicon = require('serve-favicon');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -42,6 +43,9 @@ app.use(cookieParser());
 
 // set public folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+// set favicon
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // set express session
 app.use(session({
@@ -90,6 +94,7 @@ app.use('/users', users);
 app.use('/challenges', challenges);
 app.use('/diplomas', diplomas);
 
+// handle invalid routes
 app.use(function(req, res, next) {
     res.status(400);
     res.render('error');
