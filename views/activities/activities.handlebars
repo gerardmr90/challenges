@@ -4,18 +4,18 @@
 <body>
 	<div class="row">
 		<div class="col-lg-9">
-			<h1>Diplomas</h1>
+			<h1>Actividades</h1>
 		</div>
 		<div class="col-lg-3">
-			<form method="get" action="/diplomas/register">
-				<input id="button-challenge" type="submit" value="Nueva Diploma" class="btn btn-primary"/>
+			<form method="get" action="/activities/register">
+				<input id="button-challenge" type="submit" value="Nueva Actividad" class="btn btn-primary"/>
 			</form>
 		</div>
 	</div>
-	{{#each diplomas}}
+	{{#each activities}}
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h3>{{diplomaName}}</h3>
+				<h3>{{activityName}}</h3>
 				<h5>{{description}}</h5>
 			</div>
 		</div>

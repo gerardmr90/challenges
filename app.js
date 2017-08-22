@@ -24,6 +24,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var challenges = require('./routes/challenges');
 var diplomas = require('./routes/diplomas');
+var activities = require('./routes/activities');
 
 // initialize app
 var app = express();
@@ -60,20 +61,20 @@ app.use(passport.session());
 
 //set express validator
 app.use(validator({
-  errorFormatter: function(param, msg, value) {
-      var namespace = param.split('.')
-      , root    = namespace.shift()
-      , formParam = root;
+	errorFormatter: function(param, msg, value) {
+		var namespace = param.split('.')
+			, root    = namespace.shift()
+			, formParam = root;
 
-    while(namespace.length) {
-      formParam += '[' + namespace.shift() + ']';
-    }
-    return {
-      param : formParam,
-      msg   : msg,
-      value : value
-    };
-  }
+		while(namespace.length) {
+			formParam += '[' + namespace.shift() + ']';
+		}
+		return {
+			param : formParam,
+			msg   : msg,
+			value : value
+		};
+	}
 }));
 
 // set connect flash
@@ -93,15 +94,16 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/challenges', challenges);
 app.use('/diplomas', diplomas);
+app.use('/activities', activities);
 
 // handle invalid routes
 app.use(function(req, res, next) {
-    res.status(400);
-    res.render('error');
+	res.status(400);
+	res.render('error');
 });
 
 // set port and start server
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
-  console.log('Server listening on port %d', port);
+	console.log('Server listening on port %d', port);
 });

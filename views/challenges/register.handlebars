@@ -17,9 +17,17 @@
 			</div>
 			<div class="form-group">
 				<label>Diploma</label>
-				<select id="diploma" type="select" placeholder="Diploma" name="diplomaName" class="form-control" required>
+				<select id="diploma" type="select" placeholder="Diploma" name="diploma" class="form-control" required>
 					{{#each diplomas}}
-        		<option value="{{diplomaName}}">{{diplomaName}}</option>
+        		<option value="{{_id}}">{{diplomaName}}</option>
+					{{/each}}
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Actividades</label>
+				<select id="activities" type="select" placeholder="Actividades" name="activities" class="form-control" multiple required>
+					{{#each activities}}
+        		<option value="{{_id}}">{{activityName}}</option>
 					{{/each}}
 				</select>
 			</div>

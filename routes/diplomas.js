@@ -5,7 +5,13 @@ var auth = require('../middlewares/auth');
 
 // GET home page.
 router.get('/', auth.ensureAthentication, function(req, res) {
-	res.render('diplomas/diplomas');
+	Diploma.getDiplomas(function(err, diplomas) {
+		if (err) throw err;
+		else {
+			res.render('diplomas/diplomas', {
+				diplomas: diplomas});
+		}
+	});
 });
 
 // GET register page.
@@ -21,7 +27,7 @@ router.post('/register', auth.ensureAthentication, function(req, res) {
 	Diploma.getDiplomaByName(diplomaName, function(err, diploma) {
 		if (err) throw err;
 		else if (diploma) {
-			var errors = [{param: "diplomaName", msg: "El diploma ya existe", value: diplomaName}];
+			var errors = [{param: 'diplomaName', msg: 'El diploma ya existe', value: diplomaName}];
 			res.render('diplomas/register', {
 				errors: errors
 			});

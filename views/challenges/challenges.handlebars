@@ -1,1 +1,30 @@
-<h1>Challenges</h1>
+<!DOCTYPE html>
+<html>
+
+<body>
+	<div class="row">
+		<div class="col-lg-9">
+			<h1>Retos</h1>
+		</div>
+		<div class="col-lg-3">
+			<form method="get" action="/challenges/register">
+				<input id="button-challenge" type="submit" value="Nuevo Reto" class="btn btn-primary"/>
+			</form>
+		</div>
+	</div>
+	{{#each challenges}}
+		<div class="row text-center">
+			<div class="col-lg-6">
+				<h3>{{challengeName}}</h3>
+				<h5>{{description}}</h5>
+			</div>
+			<div class="col-lg-6">
+				<form method="get" action="/challenges/{{challengeName}}/preview">
+					<input id="button-challenge" type="submit" value="Estoy listo" class="btn btn-primary"/>
+				</form>
+			</div>
+		</div>
+	{{/each}}
+</body>
+
+</html>

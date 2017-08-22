@@ -17,9 +17,9 @@ router.get('/login', function(req, res) {
 
 // POST on users page.
 router.post('/register', function(req, res) {
-		var username = req.body.username;
-		var password = req.body.password;
-		var confirm_password = req.body.confirm_password;
+	var username = req.body.username;
+	var password = req.body.password;
+	var confirm_password = req.body.confirm_password;
 
 	// Validation.
 	req.checkBody('password', 'La contraeña debe tener como minimo 6 caracteres').len(6, 20);
@@ -31,7 +31,7 @@ router.post('/register', function(req, res) {
 			User.getUserByUsername(username, function(err, user) {
 				if (err) throw err;
 				else if (user) {
-					var errors = [{param: "username", msg: "El usuario ya existe", value: username}];
+					var errors = [{param: 'username', msg: 'El usuario ya existe', value: username}];
 					res.render('users/register', {
 						errors: errors
 					});
@@ -67,31 +67,31 @@ passport.use(new LocalStrategy (
 				return done(null, false, {message: 'Usuario desconocido'});
 			}
 
-   	User.comparePassword(password, user.password, function(err, isMatch) {
-			if (err) throw err;
-			if (isMatch) {
-				return done(null, user);
-			} else {
-				return done(null, false, {message: 'Contraseña incorrecta'});
-			}
+			User.comparePassword(password, user.password, function(err, isMatch) {
+				if (err) throw err;
+				if (isMatch) {
+					return done(null, user);
+				} else {
+					return done(null, false, {message: 'Contraseña incorrecta'});
+				}
+			});
 		});
-	});
-}));
+	}
+));
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+	done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-  User.getUserById(id, function(err, user) {
-    done(err, user);
-  });
+	User.getUserById(id, function(err, user) {
+		done(err, user);
+	});
 });
 
-router.post('/login', passport.authenticate('local',
-	{successRedirect:'/', failureRedirect:'/users/login',failureFlash: true}),
-		function(req, res) {
-			res.redirect('/');
+router.post('/login', passport.authenticate('local',{
+	successRedirect:'/', failureRedirect:'/users/login', failureFlash: true}), function(req, res) {
+	res.redirect('/');
 });
 
 router.get('/logout', auth.ensureAthentication, function(req, res) {
