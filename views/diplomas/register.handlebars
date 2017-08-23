@@ -2,25 +2,27 @@
 <html>
 
 <body>
-	<div class="form-wrap">
-		<h3>Crear nuevo diploma</h3>
-		{{#if errors}}
+	<div class="container">
+		<div class="form-wrap">
+			<h3>Crear nuevo diploma</h3>
+			{{#if errors}}
 			{{#each errors}}
-				<div class="alert alert-danger">{{msg}}</div>
+			<div class="alert alert-danger">{{msg}}</div>
 			{{/each}}
-		{{/if}}
+			{{/if}}
 
-		<form method="post" action="/diplomas/register">
-			<div class="form-group">
-				<label>Nombre</label>
-				<input type="text" class="form-control" placeholder="Nombre" name="diplomaName" required>
-			</div>
-			<div class="form-group">
-				<label>Descripción</label>
-				<input type="text" class="form-control" placeholder="Descripcion" name="description">
-			</div>
-			<button type="submit" class="btn btn-default btn-block">Crear diploma</button>
-		</form>
+			<form method="post" action="/diplomas/register">
+				<div class="form-group">
+					<label>Nombre</label>
+					<input type="text" class="form-control" placeholder="Nombre" name="diplomaName" required>
+				</div>
+				<div class="form-group">
+					<label>Descripción</label>
+					<input type="text" class="form-control" placeholder="Descripcion" name="description">
+				</div>
+				<button type="submit" class="btn btn-default btn-block">Crear diploma</button>
+			</form>
+		</div>		
 	</div>
 </body>
 

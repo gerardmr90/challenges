@@ -27,23 +27,7 @@ router.get('/register', auth.ensureAthentication, function(req, res) {
 				activities: activities
 			});
 		});
-		// else if (diplomas) {
-		// 	res.render('challenges/register', {
-		// 		diplomas: diplomas
-		// 	});
-		// } else {
-		// 	res.render('challenges/register');
-		// }
 	});
-	// var all_activities = Activity.getActivities(function(err, activities) {
-	// 	if (err) throw err;
-	// 	return activities;
-	// });
-	//
-	// res.render('challenges/register', {
-	// 	diplomas: all_diplomas,
-	// 	activities: all_activities
-	// });
 });
 
 // POST on challenges page.
@@ -68,8 +52,6 @@ router.post('/register', auth.ensureAthentication, function(req, res) {
 				description: description
 			});
 
-			console.log(new_challenge);
-
 			Challenge.createChallenge(new_challenge, function(err, challenge) {
 				if (err) return err;
 
@@ -82,12 +64,28 @@ router.post('/register', auth.ensureAthentication, function(req, res) {
 	});
 });
 
-router.get('/:challengeName/preview', auth.ensureAthentication, function(req, res) {
-	res.render('challenges/preview');
+router.get('/ahorcado', auth.ensureAthentication, function(req, res) {
+	res.render('challenges/ahorcado/preview');
 });
 
-router.get('/:challengeName', auth.ensureAthentication, function(req, res) {
-	res.render('index');
+router.get('/ahorcado/1', auth.ensureAthentication, function(req, res) {
+	res.render('challenges/ahorcado/game');
+});
+
+router.get('/ahorcado/2', auth.ensureAthentication, function(req, res) {
+	res.render('challenges/ahorcado/game');
+});
+
+router.get('/ahorcado/3', auth.ensureAthentication, function(req, res) {
+	res.render('challenges/ahorcado/game');
+});
+
+router.get('/ahorcado/4', auth.ensureAthentication, function(req, res) {
+	res.render('challenges/ahorcado/game');
+});
+
+router.get('/ahorcado/5', auth.ensureAthentication, function(req, res) {
+	res.render('challenges/ahorcado/game');
 });
 
 module.exports = router;

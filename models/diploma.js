@@ -11,10 +11,6 @@ var DiplomaSchema = mongoose.Schema({
 	}
 });
 
-DiplomaSchema.virtual('url').get(function () {
-	return '/diplomas/' + this.diplomaName;
-});
-
 var Diploma = module.exports = mongoose.model('Diploma', DiplomaSchema);
 
 module.exports.createDiploma = function(diploma, callback) {

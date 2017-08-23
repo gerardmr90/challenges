@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-// Challenge Schema
+// Activity Schema
 var ActivitySchema = mongoose.Schema({
 	activityName: {
 		type: String,
@@ -9,10 +9,6 @@ var ActivitySchema = mongoose.Schema({
 	description: {
 		type: String
 	}
-});
-
-ActivitySchema.virtual('url').get(function () {
-	return '/activities/' + this.activityName;
 });
 
 var Activity = module.exports = mongoose.model('Activity', ActivitySchema);

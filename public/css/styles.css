@@ -5,9 +5,21 @@ html {
   min-height: 100%;
 }
 body {
+  padding-top: 50px;
+  padding-bottom: 20px;
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
+.header {
+	padding-top: 40px;
+}
+
+.header-text {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -49,7 +61,7 @@ code {
 }
 
 .error-template {
-	padding: 40px 15px;
+	padding: 200px 100px;
 	text-align: center;
 }
 

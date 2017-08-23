@@ -22,10 +22,6 @@ var ChallengeSchema = mongoose.Schema({
 	}
 });
 
-ChallengeSchema.virtual('url').get(function () {
-	return '/challenges/' + this.challengeName;
-});
-
 var Challenge = module.exports = mongoose.model('Challenge', ChallengeSchema);
 
 module.exports.createChallenge = function(newChallenge, callback) {

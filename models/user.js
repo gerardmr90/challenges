@@ -12,10 +12,6 @@ var UserSchema = mongoose.Schema({
 	}
 });
 
-UserSchema.virtual('url').get(function () {
-	return '/users/' + this.username;
-});
-
 var User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.createUser = function(newUser, callback) {

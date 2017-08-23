@@ -2,7 +2,64 @@
 <html>
 
 <body>
-	<h1>{{user.username}}</h1>
+	<div class="container">
+		<div class="row">
+			<div class="header">
+				<div class="col-lg-2">
+					<h2>{{user.username}}</h2>
+				</div>
+				<div class="col-lg-10">
+					<ul class="nav nav-tabs nav-justified">
+						<li class="active"><a data-toggle="tab" href="#challenges">Retos</a></li>
+						<li><a data-toggle="tab" href="#activities">Actividades</a></li>
+						<li><a data-toggle="tab" href="#diplomas">Diplomas</a></li>
+					</ul>
+					<div class="tab-content header-text">
+  					<div id="challenges" class="tab-pane fade in active">
+					    <h3>Retos completados</h3>
+							<hr />
+							{{#each challenges}}
+							<div class="row">
+								<div class="col-lg-6">
+									<h3>{{challengeName}}</h3>
+									<h5>{{description}}</h5>
+									<hr />
+								</div>
+							</div>
+							{{/each}}
+					  </div>
+					 	 <div id="activities" class="tab-pane fade">
+					    <h3>Actividades completadas</h3>
+							<hr />
+							{{#each activities}}
+							<div class="row">
+								<div class="col-lg-6">
+									<h3>{{activityName}}</h3>
+									<h5>{{description}}</h5>
+									<hr />
+								</div>
+							</div>
+							{{/each}}
+					  </div>
+					  <div id="diplomas" class="tab-pane fade">
+					    <h3>Diplomas obtenidos</h3>
+							<hr />
+							{{#each diplomas}}
+							<div class="row">
+								<div class="col-lg-6">
+									<h3>{{diplomaName}}</h3>
+									<h5>{{description}}</h5>
+									<hr />
+								</div>
+							</div>
+							{{/each}}
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 
 </html>

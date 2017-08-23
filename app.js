@@ -17,7 +17,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/challenge',{
 	useMongoClient: true
 });
-var db = mongoose.connection;
+//var db = mongoose.connection;
 
 // set routes
 var index = require('./routes/index');
