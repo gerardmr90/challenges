@@ -1,6 +1,7 @@
 var spots = [false, false, false, false, false];
 var index;
 
+
 function allowDrop(ev) {
 	ev.preventDefault();
 }
@@ -44,4 +45,12 @@ function disableButton(ev) {
 	index = parseInt(ev.target.id);
 	spots[index] = false;
 	document.getElementById('button-challenge').disabled = true;
+}
+
+function reload() {
+	location.reload();
+}
+
+function quit() {
+	window.location.replace('http://localhost:3000/');
 }

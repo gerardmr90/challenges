@@ -54,7 +54,6 @@ router.post('/register', auth.ensureAthentication, function(req, res) {
 
 			Challenge.createChallenge(new_challenge, function(err, challenge) {
 				if (err) return err;
-
 			});
 
 			req.flash('success_msg', 'Reto creado correctamente');

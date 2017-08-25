@@ -7,9 +7,9 @@
 					<div class="col-lg-12 text-justify">
 						<h1>Retos</h1>
 						<h3>
-							Bienvenido a la web de retos del Portal sobre el Dolor Cronico.
-							Aqui encontraras una serie de juegos con los que te divertiras mientras aprendes.
-							Una vez los completes, conseguiras recompensas unicas.
+							Bienvenido a la web de retos del Portal sobre el Dolor Crónico.
+							Aquí encontrarás una serie de juegos con los que te divertirás mientras aprendes.
+							Cada vez que completes un reto, recibirás una recompensa.
 						</h3>
 					</div>
 				</div>
@@ -21,6 +21,22 @@
 					<h2>Retos disponibles</h2>
 				</div>
 			</div>
+		</div>
+		<div class="container">
+			{{#each challenges}}
+			<div class="row">
+				<div class="col-lg-6">
+					<h3>{{challengeName}}</h3>
+					<h5>{{description}}</h5>
+				</div>
+				<div class="col-lg-6 text-right">
+					<form method="get" action="/challenges/{{challengeName}}">
+						<input id="button-challenge" type="submit" value="Estoy listo" class="btn btn-primary"/>
+					</form>
+				</div>
+			</div>
+			<hr />
+			{{/each}}
 		</div>
   </body>
 </html>

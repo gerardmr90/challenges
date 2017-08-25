@@ -87,15 +87,91 @@ code {
   margin-bottom: 20px;
 }
 
-.menu li {
-    padding: 8px;
-    margin-bottom: 7px;
-    background-color :#33b5e5;
-    color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-
 img:hover {
     opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.buttons-wrap {
+	width: 80%;
+}
+
+.wrappper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+canvas {
+  color: blue;
+  border: black dashed 2px;
+  padding: 15px;
+}
+
+#alphabet {
+  margin: 40px auto;
+	max-width: 810px;
+}
+
+#alphabet li {
+	font-size: 1.4em;
+  float: left;
+  margin: 0 10px 10px 0;
+  list-style: none;
+  width: 45px;
+  height: 45px;
+  padding-top: 10px;
+  background: black;
+  color: white;
+  cursor: pointer;
+	border-radius: 5px;
+}
+
+#alphabet li:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+#phrase {
+  margin: 0;
+  display: block;
+  padding: 0;
+  display: block;
+}
+
+#phrase li {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  display: inline-block;
+  padding: 0 3px;
+	font-size: 2em;
+}
+
+.active {
+  opacity: 0.2;
+  cursor: default;
+	-moz-transition:all 0.3s ease-out;
+  -webkit-transition:all 0.3s ease-out;
+}
+
+#lives {
+  font-size: 1.4em;
+  text-align: right;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  #alphabet {
+    padding: 0 0 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  #alphabet {
+    padding: 0 0 0 25px;
+  }
+}
+
+.phrase-text {
+	margin: 20px auto;
 }
