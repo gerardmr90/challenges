@@ -9,15 +9,14 @@ var validator = require('express-validator');
 var session = require('express-session');
 var flash = require('connect-flash');
 var passport = require('passport');
-var local = require('passport-local').Strategy;
-var mongodb = require('mongodb');
+// var local = require('passport-local').Strategy;
+// var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 
 // connect to database
 mongoose.connect('mongodb://localhost/challenge',{
 	useMongoClient: true
 });
-//var db = mongoose.connection;
 
 // set routes
 var index = require('./routes/index');
@@ -60,22 +59,20 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //set express validator
-app.use(validator({
-	errorFormatter: function(param, msg, value) {
-		var namespace = param.split('.')
-			, root    = namespace.shift()
-			, formParam = root;
+app.use(validator({errorFormatter: function(param, msg, value) {
+	var namespace = param.split('.'),
+		root = namespace.shift(),
+		formParam = root;
 
-		while(namespace.length) {
-			formParam += '[' + namespace.shift() + ']';
-		}
-		return {
-			param : formParam,
-			msg   : msg,
-			value : value
-		};
+	while(namespace.length) {
+		formParam += '[' + namespace.shift() + ']';
 	}
-}));
+	return {
+		param : formParam,
+		msg : msg,
+		value : value
+	};
+}}));
 
 // set connect flash
 app.use(flash());

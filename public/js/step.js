@@ -1,13 +1,9 @@
 window.onload = function () {
 
 	var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-		'm', 'n', 'ñ', 'o', 'p', 'q',	'r', 's', 't', 'u', 'v', 'w',	'x', 'y', 'z'];		
+		'm', 'n', 'ñ', 'o', 'p', 'q',	'r', 's', 't', 'u', 'v', 'w',	'x', 'y', 'z'];
 
-	var phrases = ['el dolor siempre esta en el cerebro y,por lo tanto, el dolor es siempre real',
-		'no hay ninguna relacion entre estas alteraciones en la zona lumbar y el desarrollo del dolor cronico',
-		'los procesos inflamatorios producidos por el estres estan implicados en diferentes dolencias como el dolor lumbar y la ciatica',
-		'realizar actividad fisica produce una serie de efectos beneficiosos, no solo sobre nuestra salud en general, sino tambien sobre nuestro dolor',
-		'realizar actividad fisica produce una serie de efectos beneficiosos, no solo sobre nuestra salud en general, sino tambien sobre nuestro dolor'];
+	var assertion = 'no hay ninguna relacion entre estas alteraciones en la zona lumbar y el desarrollo del dolor cronico';
 
 	var letter;
 	var letters;
@@ -158,8 +154,7 @@ window.onload = function () {
 	};
 
 	play = function () {
-		chosenPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-		chosenPhrase = chosenPhrase.replace(/\s/g, '-');
+		chosenPhrase = assertion.replace(/\s/g, '-');
 		buttons();
 		getCanvas();
 		createHiddenPhrase();

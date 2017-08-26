@@ -3,6 +3,7 @@ var router = express.Router();
 var Challenge = require('../models/challenge');
 var Diploma = require('../models/diploma');
 var Activity = require('../models/activity');
+var UserActivities = require('../models/userActivities');
 var auth = require('../middlewares/auth');
 
 /* GET home page. */
@@ -63,28 +64,47 @@ router.post('/register', auth.ensureAthentication, function(req, res) {
 	});
 });
 
-router.get('/ahorcado', auth.ensureAthentication, function(req, res) {
-	res.render('challenges/ahorcado/preview');
+router.get('/:challengeName', auth.ensureAthentication, function(req, res) {
+	res.render('challenges/' + req.originalUrl.split('/')[2] +'/preview');
 });
 
-router.get('/ahorcado/1', auth.ensureAthentication, function(req, res) {
-	res.render('challenges/ahorcado/game');
+router.get('/:challengeName/:activityName', auth.ensureAthentication, function(req, res) {
+	UserActivities.getUserActivities(function(err, userActivities) {
+		if (err) throw err;
+		else {
+			var progress = 0;
+
+			if (userActivities.length > 0) {
+				var currentUserActivities = userActivities.filter(obj => (obj.user.toString() == req.user._id.toString()));
+				if (currentUserActivities.length === 0) {
+					var new_userActivities = new UserActivities({
+						user: req.user._id
+					});
+
+					UserActivities.createUserActivities(new_userActivities, function(err, userActitities) {
+						if (err) throw err;
+					});
+				} else {
+					progress = (currentUserActivities[0].activities.length + 0 / 5) * 100;
+				}
+			} else {
+				var new_userActivities = new UserActivities({
+					user: req.user._id
+				});
+
+				UserActivities.createUserActivities(new_userActivities, function(err, userActitities) {
+					if (err) throw err;
+				});
+			}
+		}
+		res.render('challenges/' + req.originalUrl.split('/')[2] + '/' + req.originalUrl.split('/')[3], {
+			progress: progress
+		});
+	});
 });
 
-router.get('/ahorcado/2', auth.ensureAthentication, function(req, res) {
-	res.render('challenges/ahorcado/game');
-});
-
-router.get('/ahorcado/3', auth.ensureAthentication, function(req, res) {
-	res.render('challenges/ahorcado/game');
-});
-
-router.get('/ahorcado/4', auth.ensureAthentication, function(req, res) {
-	res.render('challenges/ahorcado/game');
-});
-
-router.get('/ahorcado/5', auth.ensureAthentication, function(req, res) {
-	res.render('challenges/ahorcado/game');
-});
+// router.post('/hangman/lift', auth.ensureAthentication, function(req, res) {
+// });
+//
 
 module.exports = router;

@@ -29,3 +29,7 @@ module.exports.addActivityToUserActivities = function(id, activity, callback) {
 	var data = {$push: {activities: activity} };
 	UserActivities.update(query, data, callback);
 };
+
+module.exports.getUserActivities = function(callback) {
+	UserActivities.find(callback);
+};
