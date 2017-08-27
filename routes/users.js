@@ -4,6 +4,9 @@ var User = require('../models/user');
 var UserActivities = require('../models/userActivities');
 var UserDiplomas = require('../models/userDiplomas');
 var UserChallenges = require('../models/userChallenges');
+var Activity = require('../models/activity');
+var Diploma = require('../models/diploma');
+var Challenge = require('../models/challenge');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var auth = require('../middlewares/auth');
@@ -123,7 +126,33 @@ router.get('/logout', auth.ensureAthentication, function(req, res) {
 });
 
 router.get('/:username', auth.ensureAthentication, function(req, res) {
-	res.render('users/profile');
+	var username = req.params.username;
+
+	User.getUserByUsername(username, function(err, user) {
+		if (err) throw err;
+		var userId = user._id;
+
+		UserActivities.findOne({user: userId}).populate('activities').exec(function(err, userActivity) {
+			if (err) throw err;
+			var activities = userActivity.activities;
+
+			UserDiplomas.findOne({user: userId}).populate('diplomas').exec(function(err, userDiplomas) {
+				if (err) throw err;
+				var diplomas = userDiplomas.diplomas;
+
+				UserChallenges.findOne({user: userId}).populate('challenges').exec(function(err, UserChallenges) {
+					if (err) throw err;
+					var challenges = UserChallenges.challenges;
+
+					res.render('users/profile', {
+						activities: activities,
+						challenges: challenges,
+						diplomas: diplomas
+					});
+				});
+			});
+		});
+	});
 });
 
 module.exports = router;
