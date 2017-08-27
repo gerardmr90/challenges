@@ -24,8 +24,13 @@ module.exports.getUserActivitiesById = function(id, callback) {
 	UserActivities.findById(id, callback);
 };
 
-module.exports.addActivityToUserActivities = function(id, activity, callback) {
-	var query = {'_id': id};
+module.exports.getUserActivitiesByUserId = function(userId, callback) {
+	var query = {user: userId};
+	UserActivities.findOne(query, callback);
+};
+
+module.exports.addActivityToUserActivities = function(userId, activity, callback) {
+	var query = {user: userId};
 	var data = {$push: {activities: activity} };
 	UserActivities.update(query, data, callback);
 };

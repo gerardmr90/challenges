@@ -4,6 +4,8 @@ var Challenge = require('../models/challenge');
 var Diploma = require('../models/diploma');
 var Activity = require('../models/activity');
 var UserActivities = require('../models/userActivities');
+var UserChallenges = require('../models/userChallenges');
+var UserDiplomas = require('../models/userDiplomas');
 var auth = require('../middlewares/auth');
 
 /* GET home page. */
@@ -65,7 +67,42 @@ router.post('/register', auth.ensureAthentication, function(req, res) {
 });
 
 router.get('/:challengeName', auth.ensureAthentication, function(req, res) {
-	res.render('challenges/' + req.originalUrl.split('/')[2] +'/preview');
+	Challenge.getChallengeByName(req.params.challengeName, function(err, challenge) {
+		if (err) throw err;
+		else {
+			if (challenge) {
+				res.render('challenges/' + req.params.challengeName +'/preview');
+			} else {
+				res.status(400);
+				res.render('error');
+			}
+		}
+	});
+});
+
+router.post('/:challengeName', auth.ensureAthentication, function(req, res) {
+	var userId = req.body.userId;
+
+	UserActivities.getUserActivitiesByUserId(userId, function(err, userActivities) {
+		if (err) throw err;
+		else {
+			Challenge.getChallengeByName(req.params.challengeName, function(err, challenge) {
+				if (err) throw err;
+				else {
+					var totalActivities = challenge.activities.length;
+					if (userActivities.activities.length === totalActivities) {
+
+						UserDiplomas.addDiplomaToUserDiplomas(userId, challenge.diploma, function(err, userDiplomas) {
+							if (err) throw err;
+						});
+						UserChallenges.addChallengeToUserChallenges(userId, challenge._id, function(err, userDiplomas) {
+							if (err) throw err;
+						});
+					}
+				}
+			});
+		}
+	});
 });
 
 router.get('/:challengeName/:activityName', auth.ensureAthentication, function(req, res) {
@@ -73,38 +110,60 @@ router.get('/:challengeName/:activityName', auth.ensureAthentication, function(r
 		if (err) throw err;
 		else {
 			var progress = 0;
+			var currentUserActivities = userActivities.filter(obj => (obj.user.toString() === req.user._id.toString()));
 
-			if (userActivities.length > 0) {
-				var currentUserActivities = userActivities.filter(obj => (obj.user.toString() == req.user._id.toString()));
-				if (currentUserActivities.length === 0) {
-					var new_userActivities = new UserActivities({
-						user: req.user._id
-					});
+			Challenge.getChallengeByName(req.params.challengeName, function(err, challenge) {
+				if (err) throw err;
+				else {
+					if (challenge) {
+						var totalActivities = challenge.activities.length;
+						progress = (currentUserActivities[0].activities.length / totalActivities) * 100;
+					}
+				}
+			});
+		}
 
-					UserActivities.createUserActivities(new_userActivities, function(err, userActitities) {
-						if (err) throw err;
+		var activityName = req.params.activityName;
+		var challengeName = req.params.challengeName;
+
+		Activity.getActivityByName(activityName, function(err, activity) {
+			if (err) throw err;
+			else {
+				if (activity) {
+					res.render('challenges/' + challengeName + '/' + activityName, {
+						progress: progress,
+						userId: req.user._id,
+						activityId: activity._id
 					});
 				} else {
-					progress = (currentUserActivities[0].activities.length + 0 / 5) * 100;
+					res.status(400);
+					res.render('error');
 				}
-			} else {
-				var new_userActivities = new UserActivities({
-					user: req.user._id
-				});
-
-				UserActivities.createUserActivities(new_userActivities, function(err, userActitities) {
-					if (err) throw err;
-				});
 			}
-		}
-		res.render('challenges/' + req.originalUrl.split('/')[2] + '/' + req.originalUrl.split('/')[3], {
-			progress: progress
 		});
 	});
 });
 
-// router.post('/hangman/lift', auth.ensureAthentication, function(req, res) {
-// });
-//
+router.post('/:challengeName/:activityName', auth.ensureAthentication, function(req, res) {
+	var userId = req.body.userId;
+	var activityId = req.body.activityId;
+
+	UserActivities.getUserActivitiesByUserId(userId, function(err, userActivities) {
+		if (err) throw err;
+		else {
+			var activityCompleted = userActivities.activities.filter(obj => (obj.toString() === activityId));
+			if (activityCompleted.length === 0) {
+				Activity.getActivityById(activityId, function (err, activity) {
+					if (err) throw err;
+					else {
+						UserActivities.addActivityToUserActivities(userId, activity, function(err, result){
+							if (err) throw err;
+						});
+					}
+				});
+			}
+		}
+	});
+});
 
 module.exports = router;

@@ -24,8 +24,13 @@ module.exports.getUserDiplomasById = function(id, callback) {
 	UserDiplomas.findById(id, callback);
 };
 
-module.exports.addDiplomaToUserDiplomas = function(id, diploma, callback) {
-	var query = {'_id': id};
+module.exports.getUserDiplomasByUserId = function(userId, callback) {
+	var query = {user: userId};
+	UserDiplomas.findOne(query, callback);
+};
+
+module.exports.addDiplomaToUserDiplomas = function(userId, diploma, callback) {
+	var query = {user: userId};
 	var data = {$push: {diplomas: diploma} };
 	UserDiplomas.update(query, data, callback);
 };

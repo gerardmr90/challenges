@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var UserActivities = require('../models/userActivities');
+var UserDiplomas = require('../models/userDiplomas');
+var UserChallenges = require('../models/userChallenges');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var auth = require('../middlewares/auth');
@@ -43,9 +46,28 @@ router.post('/register', function(req, res) {
 
 					User.createUser(new_user, function(err, user) {
 						if (err) return err;
-					});
+						else {
+							var new_userActivities = new UserActivities({
+								user: user._id
+							});
+							var new_userDiplomas = new UserDiplomas({
+								user: user._id
+							});
+							var new_userChallenges = new UserChallenges({
+								user: user._id
+							});
 
-					req.flash('success_msg', 'Registro completado');
+							UserActivities.createUserActivities(new_userActivities, function(err, userActitities) {
+								if (err) throw err;
+							});
+							UserDiplomas.createUserDiplomas(new_userDiplomas, function(err, userDiplomas) {
+								if (err) throw err;
+							});
+							UserChallenges.createUserChallenges(new_userChallenges, function(err, userChallenges) {
+								if (err) throw err;
+							});
+						}
+					});
 
 					res.redirect('/users/login');
 				}
