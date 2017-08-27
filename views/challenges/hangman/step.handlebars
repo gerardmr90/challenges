@@ -108,6 +108,19 @@ $('#win').on('shown.bs.modal', function () {
 		data: data
 	});
 });
+
+$('#win').on('hidden.bs.modal', function () {
+	var user = {
+		userId: '{{userId}}'
+	}
+
+	$.ajax({
+		url: '/challenges/hangman',
+		type: 'POST',
+		dataType: 'json',
+		data: user
+	});
+});
 </script>
 
 <script src="/js/step.js"></script>

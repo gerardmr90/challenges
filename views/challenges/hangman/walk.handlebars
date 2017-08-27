@@ -45,7 +45,7 @@
 	<div class="row">
 		<div class="col-lg-12 text-center">
 			<form action="/challenges/hangman/cycle" method="get">
-				<button class="btn btn-primary" type="submit" id="next">Siguiente reto</button>
+				<button class="btn btn-primary btn-lg" type="submit" id="next">Siguiente reto</button>
 			</form>
 		</div>
 	</div>
@@ -104,6 +104,19 @@ $('#win').on('shown.bs.modal', function () {
 		type: 'POST',
 		dataType: 'json',
 		data: data
+	});
+});
+
+$('#win').on('hidden.bs.modal', function () {
+	var user = {
+		userId: '{{userId}}'
+	}
+
+	$.ajax({
+		url: '/challenges/hangman',
+		type: 'POST',
+		dataType: 'json',
+		data: user
 	});
 });
 </script>

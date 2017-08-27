@@ -45,7 +45,7 @@
 	<div class="row">
 		<div class="col-lg-12 text-center">
 			<form action="/" method="get">
-				<button class="btn btn-primary" type="submit" id="next">Ver diploma</button>
+				<button class="btn btn-primary btn-lg" type="submit" id="next">Ver diploma</button>
 			</form>
 		</div>
 	</div>
@@ -107,6 +107,18 @@ $('#win').on('shown.bs.modal', function () {
 	});
 });
 
+$('#win').on('hidden.bs.modal', function () {
+	var user = {
+		userId: '{{userId}}'
+	}
+
+	$.ajax({
+		url: '/challenges/hangman',
+		type: 'POST',
+		dataType: 'json',
+		data: user
+	});
+});
 </script>
 
 <script src="/js/fleet.js"></script>
