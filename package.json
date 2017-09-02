@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "nodemon app.js"
+    "start": "node ./bin/www",
+    "test": "nodemon ./bin/www"
   },
   "author": "Gerard Montilla Romia <gerard_m90@outlook.com>",
   "license": "GPL-2.0",
@@ -25,7 +25,6 @@
     "express-validator": "*",
     "formidable": "*",
     "fs": "*",
-    "mongodb": "*",
     "mongoose": "^4.11.8",
     "morgan": "*",
     "passport": "*",

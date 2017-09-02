@@ -9,8 +9,6 @@ var validator = require('express-validator');
 var session = require('express-session');
 var flash = require('connect-flash');
 var passport = require('passport');
-// var local = require('passport-local').Strategy;
-// var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 
 // connect to database
@@ -93,14 +91,22 @@ app.use('/challenges', challenges);
 app.use('/diplomas', diplomas);
 app.use('/activities', activities);
 
-// handle invalid routes
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-	res.status(400);
+	var err = new Error('Not Found');
+	err.status = 404;
+	next(err);
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+	// render the error page
+	res.status(err.status || 500);
 	res.render('error');
 });
 
-// set port and start server
-var port = process.env.PORT || 3000;
-app.listen(port, function () {
-	console.log('Server listening on port %d', port);
-});
+module.exports = app;
