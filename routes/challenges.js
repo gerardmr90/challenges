@@ -66,15 +66,14 @@ router.post('/register', auth.ensureAthentication, function(req, res) {
 	});
 });
 
-router.get('/:challengeName', auth.ensureAthentication, function(req, res) {
+router.get('/:challengeName', auth.ensureAthentication, function(req, res, next) {
 	Challenge.getChallengeByName(req.params.challengeName, function(err, challenge) {
 		if (err) throw err;
 		else {
 			if (challenge) {
 				res.render('challenges/' + req.params.challengeName +'/preview');
 			} else {
-				res.status(400);
-				res.render('error');
+				next(err)
 			}
 		}
 	});
@@ -105,7 +104,7 @@ router.post('/:challengeName', auth.ensureAthentication, function(req, res) {
 	});
 });
 
-router.get('/:challengeName/:activityName', auth.ensureAthentication, function(req, res) {
+router.get('/:challengeName/:activityName', auth.ensureAthentication, function(req, res, next) {
 	UserActivities.getUserActivities(function(err, userActivities) {
 		if (err) throw err;
 		else {
@@ -125,19 +124,21 @@ router.get('/:challengeName/:activityName', auth.ensureAthentication, function(r
 
 		var activityName = req.params.activityName;
 		var challengeName = req.params.challengeName;
+		var array = currentUserActivities[0].activities;
 
 		Activity.getActivityByName(activityName, function(err, activity) {
 			if (err) throw err;
 			else {
 				if (activity) {
+					var completed = array.filter(obj => obj.toString() === activity._id.toString());					
 					res.render('challenges/' + challengeName + '/' + activityName, {
 						progress: progress,
 						userId: req.user._id,
-						activityId: activity._id
+						activityId: activity._id,
+						completed: completed
 					});
 				} else {
-					res.status(400);
-					res.render('error');
+					next(err);
 				}
 			}
 		});

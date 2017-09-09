@@ -1,36 +1,29 @@
-<!DOCTYPE html>
-<html>
-
-<body>
-	<div class="container">
-		<div class="header">
-			<div class="row">
-				<div class="col-lg-9">
-					<h1>Retos</h1>
-				</div>
-				<div class="col-lg-3 text-right">
-					<form method="get" action="/challenges/register">
-						<input id="button-challenge" type="submit" value="Nuevo Reto" class="btn btn-primary btn-lg"/>
-					</form>
-				</div>
-			</div>
-			<hr />
-		</div>
-		{{#each challenges}}
+<div class="container">
+	<div class="header">
 		<div class="row">
-			<div class="col-lg-6">
-				<h3 class="text-uppercase">{{challengeName}}</h3>
-				<h5>{{description}}</h5>
+			<div class="col-lg-9">
+				<h1>Retos</h1>
 			</div>
-			<div class="col-lg-6 text-right">
-				<form method="get" action="/challenges/{{challengeName}}">
-					<input id="button-challenge" type="submit" value="Estoy listo" class="btn btn-primary"/>
+			<div class="col-lg-3 text-right">
+				<form method="get" action="/challenges/register">
+					<input id="button-challenge" type="submit" value="Nuevo Reto" class="btn btn-primary btn-lg"/>
 				</form>
 			</div>
 		</div>
 		<hr />
-		{{/each}}
 	</div>
-</body>
-
-</html>
+	{{#each challenges}}
+	<div class="row well row-eq-height">
+		<div class="col-lg-6">
+			<h3 class="text-uppercase">{{challengeName}}</h3>
+			<h5>{{description}}</h5>
+		</div>
+		<div class="col-lg-6 text-right">
+			<form method="get" action="/challenges/{{challengeName}}">
+				<input id="button-challenge" type="submit" value="Estoy listo" class="btn btn-primary"/>
+			</form>
+		</div>
+	</div>
+	<hr />
+	{{/each}}
+</div>

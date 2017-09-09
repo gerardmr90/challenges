@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html>
+<div class="container">
+	<div class="form-wrap">
+		<h3>Crear nueva actividad</h3>
+		{{#if errors}}
+		{{#each errors}}
+		<div class="alert alert-danger">{{msg}}</div>
+		{{/each}}
+		{{/if}}
 
-<body>
-	<div class="container">
-		<div class="form-wrap">
-			<h3>Crear nueva actividad</h3>
-			{{#if errors}}
-			{{#each errors}}
-			<div class="alert alert-danger">{{msg}}</div>
-			{{/each}}
-			{{/if}}
-
-			<form method="post" action="/activities/register">
-				<div class="form-group">
-					<label>Nombre</label>
-					<input type="text" class="form-control" placeholder="Nombre" name="activityName" required>
-				</div>
-				<div class="form-group">
-					<label>Descripción</label>
-					<input type="text" class="form-control" placeholder="Descripción" name="description">
-				</div>
-				<button type="submit" class="btn btn-default btn-block">Crear actividad</button>
-			</form>
-		</div>		
+		<form method="post" action="/activities/register">
+			<div class="form-group">
+				<label>Nombre</label>
+				<input type="text" class="form-control" placeholder="Nombre" name="activityName" required>
+			</div>
+			<div class="form-group">
+				<label>Descripción</label>
+				<input type="text" class="form-control" placeholder="Descripción" name="description">
+			</div>
+			<button type="submit" class="btn btn-default btn-block">Crear actividad</button>
+		</form>
 	</div>
-</body>
-
-</html>
+</div>

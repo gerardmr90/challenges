@@ -12,7 +12,7 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 
 // connect to database
-mongoose.connect('mongodb://localhost/challenge',{
+var db = mongoose.connect('mongodb://localhost/challenge',{
 	useMongoClient: true
 });
 
@@ -81,6 +81,11 @@ app.use(function(req, res, next) {
 	res.locals.error_msg = req.flash('error_msg');
 	res.locals.error = req.flash('error');
 	res.locals.user = req.user || null;
+	next();
+});
+
+app.use(function(req,res,next){
+	req.db = db;
 	next();
 });
 

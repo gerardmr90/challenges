@@ -1,4 +1,11 @@
 <div class="container">
+	{{#if completed}}
+	<div class="row">
+		<div class="col-lg-12 alert alert-success text-center">
+			<h3><strong>Ya has completado esta actividad</strong></h3>
+		</div>
+	</div>
+	{{/if}}
 	<div class="row text-center">
 		<div class="col-lg-12">
 			<h2>Descubre la frase oculta</h2>
@@ -25,12 +32,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="row text-center">
+	<div class="row text-center row-eq-height">
 		<div class="col-lg-6">
 			<canvas id="hangman"></canvas>
 		</div>
 		<div class="col-lg-6">
-
+			<div class="walker"></div>
 		</div>
 	</div>
 	<div class="row text-center">

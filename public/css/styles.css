@@ -5,7 +5,7 @@ html {
   min-height: 100%;
 }
 body {
-  padding-top: 50px;
+  padding-top: 65px;
   padding-bottom: 20px;
   /* Margin bottom by footer height */
   margin-bottom: 60px;
@@ -174,4 +174,27 @@ canvas {
 
 .phrase-text {
 	margin: 20px auto;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
+.well-success {
+    background-color: #3c763d;
+    color: white;
+}
+
+.walker {
+    width: 200px;
+    height: 200px;
+    background: url('../../images/walk.png') center left;
+    animation: walk 2s steps(34) infinite
+}
+
+@keyframes walk {
+    100% { background-position: -6800px; }
 }

@@ -1,45 +1,38 @@
-<!DOCTYPE html>
-<html>
+<div class="container">
+	<div class="form-wrap">
+		<h3>Crear nuevo reto</h3>
+		{{#if errors}}
+		{{#each errors}}
+		<div class="alert alert-danger">{{msg}}</div>
+		{{/each}}
+		{{/if}}
 
-<body>
-	<div class="container">
-		<div class="form-wrap">
-			<h3>Crear nuevo reto</h3>
-			{{#if errors}}
-			{{#each errors}}
-			<div class="alert alert-danger">{{msg}}</div>
-			{{/each}}
-			{{/if}}
-
-			<form method="post" action="/challenges/register">
-				<div class="form-group">
-					<label>Nombre</label>
-					<input type="text" class="form-control" placeholder="Nombre" name="challengeName" required>
-				</div>
-				<div class="form-group">
-					<label>Diploma</label>
-					<select id="diploma" type="select" placeholder="Diploma" name="diploma" class="form-control" required>
-						{{#each diplomas}}
-						<option value="{{_id}}">{{diplomaName}}</option>
-						{{/each}}
-					</select>
-				</div>
-				<div class="form-group">
-					<label>Actividades</label>
-					<select id="activities" type="select" placeholder="Actividades" name="activities" class="form-control" multiple required>
-						{{#each activities}}
-						<option value="{{_id}}">{{activityName}}</option>
-						{{/each}}
-					</select>
-				</div>
-				<div class="form-group">
-					<label>Descripción</label>
-					<input type="text" class="form-control" placeholder="Descripcion" name="description">
-				</div>
-				<button type="submit" class="btn btn-default btn-block">Crear reto</button>
-			</form>
-		</div>		
+		<form method="post" action="/challenges/register">
+			<div class="form-group">
+				<label>Nombre</label>
+				<input type="text" class="form-control" placeholder="Nombre" name="challengeName" required>
+			</div>
+			<div class="form-group">
+				<label>Diploma</label>
+				<select id="diploma" type="select" placeholder="Diploma" name="diploma" class="form-control" required>
+					{{#each diplomas}}
+					<option value="{{_id}}">{{diplomaName}}</option>
+					{{/each}}
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Actividades</label>
+				<select id="activities" type="select" placeholder="Actividades" name="activities" class="form-control" multiple required>
+					{{#each activities}}
+					<option value="{{_id}}">{{activityName}}</option>
+					{{/each}}
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Descripción</label>
+				<input type="text" class="form-control" placeholder="Descripcion" name="description">
+			</div>
+			<button type="submit" class="btn btn-default btn-block">Crear reto</button>
+		</form>
 	</div>
-</body>
-
-</html>
+</div>
