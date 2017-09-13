@@ -130,7 +130,7 @@ router.get('/:challengeName/:activityName', auth.ensureAthentication, function(r
 			if (err) throw err;
 			else {
 				if (activity) {
-					var completed = array.filter(obj => obj.toString() === activity._id.toString());					
+					var completed = array.filter(obj => obj.toString() === activity._id.toString());
 					res.render('challenges/' + challengeName + '/' + activityName, {
 						progress: progress,
 						userId: req.user._id,
@@ -162,6 +162,19 @@ router.post('/:challengeName/:activityName', auth.ensureAthentication, function(
 						});
 					}
 				});
+			}
+		}
+	});
+});
+
+router.get('/:challengeName/diploma', auth.ensureAthentication, function(req, res, next) {
+	Challenge.getChallengeByName(req.params.challengeName, function(err, challenge) {
+		if (err) throw err;
+		else {
+			if (challenge) {
+				res.render('challenges/' + req.params.challengeName +'/diploma');
+			} else {
+				next(err)
 			}
 		}
 	});

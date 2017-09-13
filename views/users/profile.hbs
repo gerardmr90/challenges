@@ -6,16 +6,16 @@
 			</div>
 			<div class="col-lg-10">
 				<ul class="nav nav-tabs nav-justified">
-					<li class="active"><a data-toggle="tab" href="#challenges">Retos</a></li>
-					<li><a data-toggle="tab" href="#activities">Actividades</a></li>
-					<li><a data-toggle="tab" href="#diplomas">Diplomas</a></li>
+					<li role="presentation" class="active"><a data-toggle="tab" href="#challenges">Retos</a></li>
+					<li role="presentation"><a data-toggle="tab" href="#activities">Actividades</a></li>
+					<li role="presentation"><a data-toggle="tab" href="#diplomas">Diplomas</a></li>
 				</ul>
 				<div class="tab-content header-text">
 					<div id="challenges" class="tab-pane fade in active">
 				    <h3>Retos completados</h3>
 						<hr />
 						{{#each challenges}}
-						<div class="row well well-sm">
+						<div class="row well">
 							<div class="col-lg-6">
 								<h3 class="text-uppercase">{{challengeName}}</h3>
 								<h5>{{description}}</h5>
@@ -27,7 +27,7 @@
 				    <h3>Actividades completadas</h3>
 						<hr />
 						{{#each activities}}
-						<div class="row well well-sm well-success">
+						<div class="row well">
 							<div class="col-lg-6">
 								<h3 class="text-uppercase">{{activityName}}</h3>
 								<h5>{{description}}</h5>
@@ -39,7 +39,7 @@
 				    <h3>Diplomas obtenidos</h3>
 						<hr />
 						{{#each diplomas}}
-						<div class="row well well-sm">
+						<div class="row well">
 							<div class="col-lg-6">
 								<h3 class="text-uppercase">{{diplomaName}}</h3>
 								<h5>{{description}}</h5>

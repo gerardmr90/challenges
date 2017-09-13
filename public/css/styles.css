@@ -1,191 +1,189 @@
 /* Sticky footer styles
 -------------------------------------------------- */
+
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
+
 body {
-  padding-top: 65px;
-  padding-bottom: 20px;
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 
 .header {
-	padding-top: 40px;
+    padding-top: 40px;
 }
 
 .header-text {
-	padding-top: 10px;
-	padding-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #000000;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #000000;
 }
 
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-
-body > .container {
-  padding: 60px 15px 0;
+body>.container {
+    padding: 60px 15px 0;
 }
+
 .container .text-muted {
-  margin: 20px 0;
+    margin: 20px 0;
 }
 
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+.footer>.container {
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 code {
-  font-size: 80%;
+    font-size: 80%;
 }
 
 .form-wrap {
-	min-width: 300px;
-	width: 30%;
-	margin: 0 auto;
+    min-width: 300px;
+    width: 30%;
+    margin: 0 auto;
 }
 
 .upload-btn {
-	margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .error-template {
-	padding: 200px 100px;
-	text-align: center;
+    padding: 200px 100px;
+    text-align: center;
 }
 
 .title-text {
-	margin: 10px;
+    margin: 10px;
 }
 
 .image-frame {
-	display: flex;
-  width: 100%;
-  height: 260px;
-  background: #F3F3F3;
-  border: 3px dotted black;
+    display: flex;
+    width: 100%;
+    height: 260px;
+    background: #F3F3F3;
+    border: 3px dotted black;
 }
 
 .image {
-  width: 100%;
-  height: 255px;
+    width: 100%;
+    height: 255px;
 }
 
 .caption {
-  text-align: center;
-  margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-img:hover {
+.image:hover {
     opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
+    filter: alpha(opacity=50);
+    /* For IE8 and earlier */
 }
 
 .buttons-wrap {
-	width: 80%;
+    width: 80%;
 }
 
 .wrappper {
-  width: 100%;
-  margin: 0 auto;
+    width: 100%;
+    margin: 0 auto;
 }
 
 canvas {
-  color: blue;
-  border: black dashed 2px;
-  padding: 15px;
+    border: black dashed 2px;
+    padding: 15px;
 }
 
 #alphabet {
-  margin: 40px auto;
-	max-width: 810px;
+    margin: 40px auto;
+    max-width: 810px;
 }
 
 #alphabet li {
-	font-size: 1.4em;
-  float: left;
-  margin: 0 10px 10px 0;
-  list-style: none;
-  width: 45px;
-  height: 45px;
-  padding-top: 10px;
-  background: black;
-  color: white;
-  cursor: pointer;
-	border-radius: 5px;
+    font-size: 1.4em;
+    float: left;
+    margin: 0 10px 10px 0;
+    list-style: none;
+    width: 45px;
+    height: 45px;
+    padding-top: 10px;
+    background: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 #alphabet li:hover {
     opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
+    filter: alpha(opacity=50);
+    /* For IE8 and earlier */
 }
 
 #phrase {
-  margin: 0;
-  display: block;
-  padding: 0;
-  display: block;
+    margin: 0;
+    display: block;
+    padding: 0;
+    display: block;
 }
 
 #phrase li {
-  position: relative;
-  list-style: none;
-  margin: 0;
-  display: inline-block;
-  padding: 0 3px;
-	font-size: 2em;
+    position: relative;
+    list-style: none;
+    margin: 0;
+    display: inline-block;
+    padding: 0 3px;
+    font-size: 2em;
 }
 
 .active {
-  opacity: 0.2;
-  cursor: default;
-	-moz-transition:all 0.3s ease-out;
-  -webkit-transition:all 0.3s ease-out;
+    opacity: 0.2;
+    cursor: default;
+    -moz-transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
 }
 
 #lives {
-  font-size: 1.4em;
-  text-align: right;
-  display: block;
+    font-size: 1.4em;
+    text-align: right;
+    display: block;
 }
 
 @media (max-width: 767px) {
-  #alphabet {
-    padding: 0 0 0 15px;
-  }
+    #alphabet {
+        padding: 0 0 0 15px;
+    }
 }
 
 @media (max-width: 480px) {
-  #alphabet {
-    padding: 0 0 0 25px;
-  }
+    #alphabet {
+        padding: 0 0 0 25px;
+    }
 }
 
 .phrase-text {
-	margin: 20px auto;
+    margin: 20px auto;
 }
 
 .row-eq-height {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
 }
 
-.well-success {
-    background-color: #3c763d;
-    color: white;
+.diploma {
+    margin: 60px auto;
 }
 
 .walker {
@@ -196,5 +194,13 @@ canvas {
 }
 
 @keyframes walk {
-    100% { background-position: -6800px; }
+    100% {
+        background-position: -6800px;
+    }
+}
+
+.gif {
+    width: 334px;
+    height: 184px;
+    border: black dashed 2px;
 }

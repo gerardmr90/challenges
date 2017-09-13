@@ -1,14 +1,15 @@
 <div class="container">
 	{{#if completed}}
 	<div class="row">
-		<div class="col-lg-12 well well-sm text-center">
-			<h4>Ya has completado esta actividad</h4>
+		<div class="col-lg-12 alert alert-success text-center">
+			<h3>Ya has completado esta actividad</h3>
 		</div>
 	</div>
 	{{/if}}
 	<div class="row text-center">
 		<div class="col-lg-12">
 			<h2>Descubre la frase oculta</h2>
+			<h4>Actividad física: Caminar más de 30 minutos</h4>
 		</div>
 	</div>
 	<div class="row">
@@ -37,7 +38,7 @@
 			<canvas id="hangman"></canvas>
 		</div>
 		<div class="col-lg-6">
-
+			<img src="/images/walk.gif" class="gif" />
 		</div>
 	</div>
 	<div class="row text-center">
@@ -51,8 +52,8 @@
 	<p id="mylives"></p>
 	<div class="row">
 		<div class="col-lg-12 text-center">
-			<form action="/" method="get">
-				<button class="btn btn-primary btn-lg" type="submit" id="next">Ver diploma</button>
+			<form action="/challenges/hangman/diploma" method="get">
+				<button class="btn btn-primary btn-lg" type="submit" id="button_dismiss" style="display: none;">Ver diploma</button>
 			</form>
 		</div>
 	</div>
@@ -69,10 +70,11 @@
         <h4 class="modal-title">Enhorabuena</h4>
       </div>
       <div class="modal-body">
-        <p>Has descubierto la frase oculta. Has completado todos los desafios. Ver tu medalla</p>
+        <p>Has descubierto la frase oculta.</p>
+		<p>¡Has completado todos los desafios!</p>
       </div>
       <div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -112,6 +114,8 @@ $('#win').on('shown.bs.modal', function () {
 		dataType: 'json',
 		data: data
 	});
+
+	$('#button_dismiss').show();
 });
 
 $('#win').on('hidden.bs.modal', function () {

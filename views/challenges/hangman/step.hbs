@@ -2,13 +2,14 @@
 	{{#if completed}}
 	<div class="row">
 		<div class="col-lg-12 alert alert-success text-center">
-			<h3><strong>Ya has completado esta actividad</strong></h3>
+			<h3>Ya has completado esta actividad</h3>
 		</div>
 	</div>
 	{{/if}}
 	<div class="row text-center">
 		<div class="col-lg-12">
 			<h2>Descubre la frase oculta</h2>
+			<h4>Actividad física: Subir escaleras</h4>
 		</div>
 	</div>
 	<div class="row">
@@ -32,12 +33,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="row text-center row-eq-height">
+	<div class="row text-center">
 		<div class="col-lg-6">
 			<canvas id="hangman"></canvas>
 		</div>
 		<div class="col-lg-6">
-			<div class="walker"></div>
+			<img src="/images/stairs.gif" class="gif" />
 		</div>
 	</div>
 	<div class="row text-center">
@@ -51,7 +52,7 @@
 	<p id="mylives"></p>
 	<div class="row">
 		<div class="col-lg-12 text-center">
-			<form action="/challenges/hangman/cycle" method="get">
+			<form action="/challenges/hangman/walk" method="get">
 				<button class="btn btn-primary btn-lg" type="submit" id="next">Siguiente reto</button>
 			</form>
 		</div>
@@ -71,32 +72,34 @@
       <div class="modal-body">
         <p>Has descubierto la frase oculta. El botón que enconcotras mas abajo te llevara al siguiente desafio</p>
       </div>
-      <div class="modal-footer">
+			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      </div>
+			</div>
     </div>
   </div>
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="loose" role="dialog">
-	<div class="modal-dialog">
+  <div class="modal-dialog">
 
-		<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Has perdido</h4>
-			</div>
-			<div class="modal-body">
-				<p>No has conseguido descubrir la frase oculta, no importa puedes volver a intentarlo pulsando el boton que encontraras mas abajo</p>
-			</div>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Enhorabuena</h4>
+      </div>
+      <div class="modal-body">
+        <p>Has descubierto la frase oculta. El botón que enconcotras mas abajo te llevara al siguiente desafio</p>
+      </div>
 			<div class="modal-footer">
-				<button onclick="reload()" type="button" class="btn btn-default" data-dismiss="modal">Volver a intentarlo</button>
-				<button onclick="quit()" type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+				<form method="get" action="/challenges/hangman/walk">
+					<button type="submit" class="btn btn-primary">Siguiente actividad</button>
+					<button onclick="quit()" type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+				</form>
 			</div>
-		</div>
-	</div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -107,7 +110,7 @@ $('#win').on('shown.bs.modal', function () {
 	}
 
 	$.ajax({
-		url: '/challenges/hangman/walk',
+		url: '/challenges/hangman/step',
 		type: 'POST',
 		dataType: 'json',
 		data: data
@@ -128,5 +131,5 @@ $('#win').on('hidden.bs.modal', function () {
 });
 </script>
 
-<script src="/js/walk.js"></script>
+<script src="/js/step.js"></script>
 <script src="/js/script.js"></script>
