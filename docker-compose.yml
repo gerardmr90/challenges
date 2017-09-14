@@ -1,0 +1,15 @@
+version: '2'
+services:
+  challenges:
+    build: .
+    image: gerardmr90/challenges
+    ports:
+      - "3000:3000"
+    depends_on:
+      - challenges-db
+    environment:
+      - MONGODB=mongodb://challenges-db/challenges
+    ports:
+      - "3000:3000"
+  challenges-db:
+    image: mongo

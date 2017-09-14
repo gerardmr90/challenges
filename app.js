@@ -12,7 +12,8 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 
 // connect to database
-var db = mongoose.connect('mongodb://localhost/challenge', {
+var dbUrl = process.env.MONGODB || 'mongodb://localhost/challenge';
+var db = mongoose.connect(dbUrl, {
     useMongoClient: true
 });
 
